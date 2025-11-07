@@ -31,8 +31,9 @@ jobs:
 
       # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
+          persist_credentials: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           # optional: specify a branch if you don't want to use gh-pages
