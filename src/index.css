@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import "tailwindcss";
+
+:root {
+    /* Backgrounds */
+    --color-background: #000000; /* pure black main background */
+    --color-slide-background: #000000; /* same as main background */
+    --color-code-output-bg: #0f172a; /* very dark blue-gray for code blocks */
+    --color-table-header-bg: #1e293b; /* dark blue-gray */
+    --color-table-row-odd-bg: #111827; /* dark gray-black */
+    --color-table-row-hover-bg: #1e293b; /* slightly lighter for hover */
+    --color-error-bg: #4b0000; /* dark red for errors */
+
+    /* Text */
+    --color-text-primary: #e0f2ff; /* light blue text */
+    --color-text-secondary: #a5b4fc; /* soft blue-gray text */
+    --color-error-text: #fca5a5; /* light red text for errors */
+
+    /* Borders */
+    --color-border: #334155; /* dark blue-gray border */
+
+    /* Buttons */
+    --color-btn-bg: #3b82f6; /* blue-500 */
+    --color-btn-hover-bg: #2563eb; /* blue-600 */
+    --color-btn-active-bg: #1e40af; /* blue-800 */
+    --color-btn-text: #ffffff; /* white text */
+    --color-btn-secondary-bg: #0f172a; /* dark code background */
+    --color-btn-secondary-hover-bg: #1e293b; /* hover on secondary button */
+
+    /* Accent / Primary */
+    --color-primary: #3b82f6; /* blue-500 */
+    --color-primary-hover: #2563eb; /* blue-600 */
+    --color-accent: #60a5fa; /* light blue accent */
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.bg-main { background-color: var(--color-background); }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    background-color: var(--color-btn-bg);
+    color: var(--color-btn-text);
+    box-shadow: 0 4px 6px -1 rgba(0, 0, 0, 0.1), 0 2px 4px -2 rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: var(--color-btn-hover-bg);
+    box-shadow: 0 10px 15px -3 rgba(0, 0, 0, 0.2), 0 4px 6px -4 rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    background-color: var(--color-btn-active-bg);
+}
+
+.btn-secondary {
+    background-color: var(--color-btn-secondary-bg);
+    color: var(--color-text-primary);
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-btn-secondary-hover-bg);
+}
+
+.slide-container {
+    background-color: var(--color-slide-background);
+    color: var(--color-text-primary);
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.markdown-slide {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.markdown-slide h1 {
+    font-size: 4rem;
+    font-weight: 800; 
+    margin-bottom: 1.5rem; 
+}
+
+.markdown-slide h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.markdown-slide h3 {
+    font-size: 2rem;
+    font-weight: 600; 
+    margin-bottom: 0.75rem;
+}
+
+.markdown-slide table {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1.5rem;
+}
+
+th {
+    background-color: var(--color-table-header-bg);
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--color-table-row-odd-bg);
+}
+
+tbody tr:hover {
+    background-color: var(--color-table-row-hover-bg);
+}
+
+.code-slide-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.syntax-highlighter-wrapper {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.output-stream, .output-text, .output-error {
+    text-align: left;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem 1rem;
+}
+
+.slide-container img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
