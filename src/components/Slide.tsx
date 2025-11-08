@@ -1,4 +1,7 @@
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css"; 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import type { SlideContent, Output, CodeCell } from "./types";
@@ -8,7 +11,7 @@ interface SlideProps {
 }
 
 const formatBase64 = (source: string | string[]): string => {
-  if (Array.isArray(source)) return source.join('');
+  if (Array.isArray(source)) return source.join("");
   return source;
 };
 
@@ -87,12 +90,17 @@ export default function Slide({ cell }: SlideProps) {
     <div className="p-8 slide-container w-full h-full flex flex-col justify-center items-center overflow-hidden">
       {cell.cell_type === "markdown" ? (
         <div className="markdown-slide prose max-w-full overflow-hidden text-center">
-          <ReactMarkdown>{source}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+          >
+            {source}
+          </ReactMarkdown>
         </div>
       ) : (
         <div className="w-full h-full flex flex-col justify-center items-center overflow-hidden">
           {(cell as CodeCell).renderSource && (
-            <div className="w-full flex justify-center"> {/* ✅ centers the code block */}
+            <div className="w-full flex justify-center">
               <div className="max-h-[60vh] w-[70%] overflow-auto rounded-2xl shadow-inner bg-[#1e1e1e]">
                 <SyntaxHighlighter
                   language="python"
@@ -102,10 +110,10 @@ export default function Slide({ cell }: SlideProps) {
                     padding: "1rem",
                     fontSize: "0.9rem",
                     maxHeight: "60vh",
-                    overflowX: "auto",   // allow horizontal scrolling
+                    overflowX: "auto",
                     overflowY: "auto",
-                    whiteSpace: "pre",   // preserve width
-                    wordBreak: "normal", // don't break long words
+                    whiteSpace: "pre",
+                    wordBreak: "normal",
                   }}
                 >
                   {source}
